@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+
+:root {
+	color-scheme: light;
+}
+
+
+.page-turn-root {
+	position: relative;
+	will-change: transform;
+}
+
+.page-turn-hit {
+	position: absolute;
+	bottom: 0;
+	aspect-ratio: 1/1;
+	height: 100%;
+	z-index: 50;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	overflow: hidden;
+	color: inherit;
+	transition: filter 160ms ease;
+}
+
+
+.page-turn-hit-left {
+	left: 0;
+	clip-path: polygon(0 100%, 0 0, 100% 100%);
+}
+
+
+.page-turn-hit-right {
+	right: 0;
+	clip-path: polygon(100% 100%, 0 100%, 100% 0);
+}
+
+
+.page-turn-hit:focus-visible {
+	outline: 2px solid #0ea5e9;
+	outline-offset: -2px;
+}
+
+.page-turn-hit:hover,
+.page-turn-hit:focus-visible {
+	filter: brightness(1.02);
+}
+
+.page-turn-arrow {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: 0.04em;
+	color: rgba(15, 23, 42, 0.84);
+	opacity: 0;
+	transition: opacity 150ms ease;
+	pointer-events: none;
+	will-change: opacity;
+}
+
+.page-turn-hit:hover .page-turn-arrow,
+.page-turn-hit:focus-visible .page-turn-arrow {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-turn-arrow {
+		transition-duration: 1ms;
+	}
+
+	.page-turn-hit {
+		transition-duration: 1ms;
+	}
+}
